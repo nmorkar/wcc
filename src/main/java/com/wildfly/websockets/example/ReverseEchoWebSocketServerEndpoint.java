@@ -21,11 +21,23 @@ public class ReverseEchoWebSocketServerEndpoint {
     }
 
     @OnMessage
-    public String onMessage(String message) {
+    public void onMessage(String message,Session session) {
         if (StringUtils.isBlank(message)) {
-            return "Please send message";
+           // return "Please send message";
         }
-        return StringUtils.reverse(message);
+        
+        for (Session s : session.getOpenSessions()) {
+        	//s.getId();
+            if (s.isOpen()) {
+            	try {
+                    session.getBasicRemote().sendObject(StringUtils.reverse(message));
+                } catch(Exception ex) {
+                    System.err.println("Error in sending message to " + session + ": " + ex);
+                }
+            }
+        }
+       // session.
+        //return StringUtils.reverse(message);
     }
 
     @OnClose

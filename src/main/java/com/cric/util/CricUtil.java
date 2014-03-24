@@ -15,7 +15,7 @@ public final class CricUtil {
 
 	public static CricModel selectPlayer(String username) {
 		CricModel model = new CricModel();
-		User u = User.valueOf(username);
+		User u = User.valueOf(username.toUpperCase());
 
 		model.setPlayers(CricMatchCache.selectRandom(u));
 

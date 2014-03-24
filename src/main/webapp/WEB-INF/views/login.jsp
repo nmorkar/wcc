@@ -2,16 +2,17 @@
 <html>
 <head>
 	<title>HTML5 Login</title>
-	<link rel="stylesheet" href="normalize.css">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<section class="loginform cf">
-		<form name="login" action="login.htm" method="post" accept-charset="utf-8">
+	<p style="color:red">${message}</p>
+		<form name="login" action="validate.htm" method="post" accept-charset="utf-8">
 			<ul>
 				<li>
 					<label for="usermail">Email</label>
-					<input type="email" name="username" placeholder="name" required>
+					<input type="text" name="username" placeholder="name" required>
 				</li>
 				<li>
 					<label for="password">Password</label>

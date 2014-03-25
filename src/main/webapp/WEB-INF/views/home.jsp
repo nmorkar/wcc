@@ -28,10 +28,10 @@ body {
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="brand" href="#">Welcome </a> <span id="uname">${uname}</span>
+				<a class="brand" href="#">Welcome </a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li class="active"></li>
+						<li class="active"><span id="uname">${uname}</span></li>
 					</ul>
 				</div>
 			</div>
@@ -45,8 +45,8 @@ body {
 	</c:if>
 	<div id="main1" class="container">
 		<div class="row">
-			<div id="mainCric" class="span6"></div>
-			<div id="mainCricRes" class="span6"></div>
+			<div id="mainCric" class="span5"></div>
+			<div id="mainCricRes" class="span5"></div>
 		</div>
 		<div class="row">
 		<div id="circMessage" class="span6"></div>

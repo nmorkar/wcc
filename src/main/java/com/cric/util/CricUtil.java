@@ -13,6 +13,25 @@ public final class CricUtil {
 
 	private static ObjectMapper mapper = new ObjectMapper();
 
+	public static String getModelJSON() {
+		try {
+			return mapper.writeValueAsString(getModel());
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static CricModel getModel() {
+		CricModel model = new CricModel();
+
+		model.setMatch(CricMatchCache.getMatchId());
+		model.setPlayers(CricMatchCache.getPlayers());
+		model.setPlayerCount(CricMatchCache.getPlayerCount());
+
+		return model;
+	}
+
 	public static CricModel selectPlayer(String username) {
 		CricModel model = new CricModel();
 		User u = User.valueOf(username.toUpperCase());

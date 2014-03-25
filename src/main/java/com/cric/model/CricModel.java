@@ -4,18 +4,11 @@ import java.util.Collection;
 
 public class CricModel {
 
-	private String username;
 	private String match;
 	private int playerCount;
 	private Collection<Player> players;
 	private String message;
 	
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
 	public String getMatch() {
 		return match;
 	}

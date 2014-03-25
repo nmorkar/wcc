@@ -5,8 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cric.util.CricUtil;
 import com.cric.util.ValidateUtil;
 
 @Controller
@@ -35,6 +36,12 @@ public class AppController {
 		
 		model.addAttribute("uname", name);
 		return "home";
+	}
+
+
+	@RequestMapping(value = "/init.htm", headers = "Accept=application/json")
+	public @ResponseBody String init() {
+		return CricUtil.getModelJSON();
 	}
 
 }

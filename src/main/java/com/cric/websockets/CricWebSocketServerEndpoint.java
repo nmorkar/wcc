@@ -26,6 +26,9 @@ public class CricWebSocketServerEndpoint {
 
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
+		try{
+			
+		
 		if (StringUtils.isBlank(message)) {
 			 return ;
 		}
@@ -64,6 +67,9 @@ public class CricWebSocketServerEndpoint {
 		
 		// session.
 		// return StringUtils.reverse(message);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	@OnClose

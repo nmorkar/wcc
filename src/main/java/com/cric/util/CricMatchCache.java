@@ -26,7 +26,10 @@ public class CricMatchCache {
 			userPls.put(u, buildPlayer(u));
 		}else{
 			List<String> pl = p.getSelectedPlayers();
-			pl.add(selectOne());
+			String s = selectOne();
+			System.out.println(s);
+			p.add(s);
+			//pl.add(s);
 		}
 		
 		return userPls.values();
@@ -36,7 +39,8 @@ public class CricMatchCache {
 		Player p = new Player();
 		p.setIntial(u.getInitial());
 		p.setName(u.getName());
-		p.setSelectedPlayers(Arrays.asList(new String[]{selectOne()}));
+		p.add(selectOne());
+		//p.setSelectedPlayers(Arrays.asList(new String[]{selectOne()}));
 		return p;
 	}
 	

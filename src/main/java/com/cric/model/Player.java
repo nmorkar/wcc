@@ -1,5 +1,6 @@
 package com.cric.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
@@ -23,5 +24,11 @@ public class Player {
 	}
 	public void setSelectedPlayers(List<String> selectedPlayers) {
 		this.selectedPlayers = selectedPlayers;
+	}
+	public void add(String s){
+		if( selectedPlayers	== null || selectedPlayers.isEmpty() ){
+			selectedPlayers = new ArrayList<>();
+		}
+		selectedPlayers.add(s);
 	}
 }

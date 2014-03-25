@@ -1,8 +1,8 @@
 var wsUrl;
 if (window.location.protocol == 'http:') {
   	//wsUrl = 'ws://' + window.location.host + ':8000/websocket-reverse-echo-example/echo';
-	//wsUrl = 'ws://' + window.location.host + ':8000/echo';
-	wsUrl = 'ws://localhost:8080/wildfly8/cric';
+	wsUrl = 'ws://' + window.location.host + ':8000/cric';
+	//wsUrl = 'ws://localhost:8080/wildfly8/cric';
 } else {
   	//wsUrl = 'wss://' + window.location.host + ':8443/websocket-reverse-echo-example/echo';
   	wsUrl = 'wss://' + window.location.host + ':8443/cric';

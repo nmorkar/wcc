@@ -8,6 +8,7 @@ public class CricModel {
 	private int playerCount;
 	private Collection<Player> players;
 	private String message;
+	private String nextUser;
 	
 	public String getMatch() {
 		return match;
@@ -32,6 +33,12 @@ public class CricModel {
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	public String getNextUser() {
+		return nextUser;
+	}
+	public void setNextUser(String next) {
+		this.nextUser = next;
 	}
 	
 	

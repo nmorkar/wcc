@@ -7,6 +7,8 @@ public class Player {
 	private String name;
 	private String intial;
 	private List<String> selectedPlayers;
+	private int selectionOrder;
+	
 	public String getName() {
 		return name;
 	}
@@ -31,4 +33,11 @@ public class Player {
 		}
 		selectedPlayers.add(s);
 	}
+	public int getSelectionOrder() {
+		return selectionOrder;
+	}
+	public void setSelectionOrder(int selectionOrder) {
+		this.selectionOrder = selectionOrder;
+	}
+	
 }

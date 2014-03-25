@@ -3,8 +3,8 @@ var appUrl;
 if (window.location.protocol == 'http:') {
   	// wsUrl = 'ws://' + window.location.host +
 	// ':8000/websocket-reverse-echo-example/echo';
-	// wsUrl = 'ws://' + window.location.host + ':8000/cric';
-	wsUrl = 'ws://localhost:8080/wildfly8/cric';
+	 wsUrl = 'ws://' + window.location.host + ':8000/cric';
+	// = 'ws://localhost:8080/wildfly8/cric';
 	
 } else {
   	// wsUrl = 'wss://' + window.location.host +
@@ -51,27 +51,64 @@ function init(){
 }
 
 function buildUI(jdata){
-	if(jdata == null){
+	if(jdata == null || jdata.match == null){
 		$( "#mainCric" ).append("Moderater has not started the session.");
 	}
-	console.log(jdata.userName);
+	var uname = $('#uname').text();
+	
+	console.log(uname);
 	console.log(jdata.playerCount);
+	console.log(jdata.match);
+	console.log(jdata.nextUser);
 	pcount = jdata.playerCount;
+	
 	$( "#mainCricRes" ).empty();
-	$.each(jdata.players, function(i,players){
-		content ="";
-		content = '<p>' + players.name + ' : ';
-		content += '' + players.selectedPlayers + '</p>';
-		$(content).appendTo("#mainCricRes");
-	});
-	$( "#mainCric" ).empty();
-	for(i=0; i< pcount; i++){
-		$( "#mainCric" ).append( "<button class='btn btn-success' style='padding : 15px 30px' id='selectPlayer"+i+"'  > Pick Me </button>" );
-		$("button#selectPlayer"+i+"").on('click',function(){
-			var uname = $('#uname').text();
-			console.log('Input message .. '+uname);
-			ws.send("pick:" + uname);
+	if(jdata.players != null){
+		$.each(jdata.players, function(i,players){
+			content ="";
+			content = '<p>' + players.name + ' : ';
+			content += '' + players.selectedPlayers + '</p>';
+			$(content).appendTo("#mainCricRes");
 		});
+	}
+	
+	var disableButton="";
+	if(jdata != null && jdata.nextUser != null && jdata.nextUser != uname){
+		//$("button[psClass='']").removeAttr("disabled");
+		disableButton="disabled";
+	}
+	
+	$( "#mainCric" ).empty();
+	if(pcount > 0){
+		for(i=0; i< pcount; i++){
+			
+			$( "#mainCric" ).append( "<button class='btn btn-success pickClass' "+disableButton+" style='padding : 15px 30px' id='selectPlayer"+i+"'  > Pick Me </button>" );
+			
+			$("button#selectPlayer"+i+"").on('click',function(){
+				var uname = $('#uname').text();
+				console.log('Input message .. '+uname);
+				$("button[class=pickClass]").attr("disabled", "disabled");
+				ws.send("pick:" + uname );
+				
+				 //$("button[psClass='']").attr("disabled", "disabled");
+				 
+				//$( "#cricModal" ).addClass("modal");
+			});
+		}
+	}
+	
+	//Message
+	if(jdata.message != null){
+		var mSpan = "<p class='bg-info'>"+jdata.message+"</p>";
+		$( "#circMessage" ).prepend(mSpan);
+	}else{
+		$("#circMessage").empty();
+	}
+	
+	if(jdata.match != null){
+		$("#midTxt").html(jdata.match);
+	}else{
+		$("#midTxt").empty();
 	}
 }
 
@@ -92,6 +129,9 @@ $("button#midSubmit").on('click',function(){
 $("button#restSubmit").on('click',function(){
     // var message = $('textarea#inputMessage').val();
     console.log('Rest session');
+    $("#midTxt").empty();
+    $( "#circMessage" ).empty();
+    
     ws.send("reset");
 });
 

@@ -35,16 +35,26 @@ public final class CricUtil {
 	public static CricModel selectPlayer(String username) {
 		CricModel model = new CricModel();
 		User u = User.valueOf(username.toUpperCase());
-
+		
+		CricMatchCache.addSelectionOrder(u); //add user for selection order
+		
 		model.setPlayers(CricMatchCache.selectRandom(u));
 
 		model.setMatch(CricMatchCache.getMatchId());
 		model.setPlayerCount(CricMatchCache.getPlayerCount());
 		// model.setUsername(u.getName());
-
+		
+		model.setNextUser(CricMatchCache.nextSelectionOrder(u)); //set next user to select
+		
 		return model;
 	}
 
+	public static String nextUser(String username){
+		User u = User.valueOf(username.toUpperCase());
+		return CricMatchCache.nextSelectionOrder(u);
+	}
+	
+	
 	public static CricModel rest() {
 		CricMatchCache.reset();
 		CricModel model = new CricModel();

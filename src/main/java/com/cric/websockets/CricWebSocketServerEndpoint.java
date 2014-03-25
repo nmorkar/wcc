@@ -38,6 +38,12 @@ public class CricWebSocketServerEndpoint {
 		CricModel m = null;
 		if("pick".equals(ms[0])){
 			m = CricUtil.selectPlayer(ms[1]);
+			String nextUser = CricUtil.nextUser(ms[1]);
+			if(nextUser != null){
+				m.setMessage(ms[1] + " has selected the choice. "+ nextUser + " please select your choice." );
+			}else{
+				m.setMessage(ms[1] + " has selected the choice.");	
+			}
 		}else if("reset".equals(message)){
 			m = CricUtil.rest();
 		}else if("new".equals(ms[0])){

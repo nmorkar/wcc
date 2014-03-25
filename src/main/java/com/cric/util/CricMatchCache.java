@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -19,6 +20,7 @@ public class CricMatchCache {
 	private static String matchId;
 	private static Map<User, Player> userPls = new HashMap<>();
 	private static int playerCount;
+	private static List<User> selectionOrder = new ArrayList<>();
 	
 	public static Collection<Player> selectRandom(User u){
 		Player p = userPls.get(u);
@@ -86,5 +88,27 @@ public class CricMatchCache {
 		return s;
 	}
 	
+	public static void addSelectionOrder(User u){
+		if(!selectionOrder.contains(u)){
+			selectionOrder.add(u);
+		}
+	}
+	
+	public static String nextSelectionOrder(User u){
+		Iterator<User> ite = selectionOrder.iterator();
+		while (ite.hasNext()) {
+			User user = (User) ite.next();
+			if(user.name().equals(u.name())){
+				if(ite.hasNext()){
+					return ite.next().getName();
+				}else{
+					if(selectionOrder.size() > 1)
+						return selectionOrder.get(0).getName();
+				}
+			}
+		}
+		return null;
+		
+	}
 	
 }

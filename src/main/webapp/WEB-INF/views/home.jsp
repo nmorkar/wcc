@@ -48,8 +48,9 @@ body {
 						class="icon-bar"></span>
 				</button>
 				<a class="brand" href="#">Welcome </a><span class="brand" id="uname">${uname}</span>
-				
+				<div><a class="brand" href="logout.htm">Logout</a></div>
 			</div>
+			
 		</div>
 	</div>
 	<c:if test="${isAdmin}">

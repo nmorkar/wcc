@@ -1,7 +1,6 @@
 package com.cric.util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -70,6 +69,7 @@ public class CricMatchCache {
 		availableList = new ArrayList<>(getList());
 		//userPls = new HashMap<>();
 		userPls.values().clear();
+		selectionOrder.clear();
 	}
 	
 	public static void startNew(String mId){

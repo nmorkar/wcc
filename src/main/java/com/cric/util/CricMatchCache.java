@@ -79,10 +79,10 @@ public class CricMatchCache {
 	
 	private static Set<String> getList(){
 		Set<String> s = new HashSet<>();
-		for (int i=0; i<12;i++) {
+		for (int i=1; i<12;i++) {
 			s.add("A" + i);
 		}
-		for (int i=0; i<12;i++) {
+		for (int i=1; i<12;i++) {
 			s.add("B" + i);
 		}
 		return s;

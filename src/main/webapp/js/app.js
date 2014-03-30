@@ -4,7 +4,7 @@ if (window.location.protocol == 'http:') {
   	// wsUrl = 'ws://' + window.location.host +
 	// ':8000/websocket-reverse-echo-example/echo';
 	 wsUrl = 'ws://' + window.location.host + ':8000/cric';
-	// = 'ws://localhost:8080/wildfly8/cric';
+	//wsUrl = 'ws://localhost:8080/wildfly8/cric';
 	
 } else {
   	// wsUrl = 'wss://' + window.location.host +
@@ -79,7 +79,7 @@ function buildUI(jdata){
 	}
 	
 	$( "#mainCric" ).empty();
-	if(pcount > 0){
+	if(pcount > 0 && jdata.match != null && jdata.match != ""){
 		for(i=0; i< pcount; i++){
 			
 			$( "#mainCric" ).append( "<button class='btn btn-success pickClass' "+disableButton+" style='padding : 15px 30px' id='selectPlayer"+i+"'  > Pick Me </button>" );
@@ -123,7 +123,26 @@ $("button#midSubmit").on('click',function(){
     console.log('Start session');
     var mid = $("#mid").val();
     console.log(mid);
-    ws.send("new:"+ mid );
+    
+    //ws.send("new:"+ mid );	
+    
+    var jqxhr = $.ajax( "checkMatch.htm?matchname="+mid, function(data) {})
+	.done(function(data) {
+		console.log( "Check Matchname : " + data );
+		if(data == "success"){
+			ws.send("new:"+ mid );
+			console.log("true");
+		}else{
+			$("#midValMessage").html("Matchname already exists.");
+		}
+	})
+	.fail(function() {
+		console.log( "error" );
+	})
+	.always(function() {
+		//console.log( "complete" );
+	});
+    
 });
 
 $("button#restSubmit").on('click',function(){

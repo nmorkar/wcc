@@ -15,23 +15,6 @@ body {
 	padding-bottom: 40px;
 }
 
-.modal {
-    /* some styles to position the modal at the center of the page */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 300px;
-    line-height: 200px;
-    height: 200px;
-    margin-left: -150px;
-    margin-top: -100px;
-    background-color: #f1c40f;
-    text-align: center;
-   
-    /* needed styles for the overlay */
-    z-index: 10; /* keep on top of other elements on the page */
-    outline: 9999px solid rgba(0,0,0,0.5);
-}
 
 </style>
 <link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -48,7 +31,7 @@ body {
 						class="icon-bar"></span>
 				</button>
 				<a class="brand" href="#">Welcome </a><span class="brand" id="uname">${uname}</span>
-				<div><a class="brand" href="logout.htm">Logout</a></div>
+				<div style="float:right"><a class="brand" href="logout.htm">Logout</a></div>
 			</div>
 			
 		</div>
@@ -56,14 +39,22 @@ body {
 	<c:if test="${isAdmin}">
 <!-- p><button type="submit" class="btn btn-success" id="messageSubmit">Start</button></p -->
 <p>
+	<span id="midValMessage" style="color:red" ></span><br>
 	<input type="text" id="mid"> &nbsp; 
 	<button type="submit" class="btn btn-success" id="midSubmit"> Add New </button> &nbsp;
 	<button type="submit" class="btn btn-success" id="restSubmit">Rest</button>
+	<form action="save.htm" method="post">
+		<button type="submit" class="btn btn-success" id="saveSubmit">Save Selection</button>
+	</form>
 </p>
 
 	</c:if>
-	<span>Select For : </span> <span id="midTxt" ></span>
-	
+<form action="mlist.htm" method="get">
+	<button type="submit" class="btn btn-success" id="viewSubmit">View Selection</button>
+</form>
+
+	<span>Pick selection for : </span> <span id="midTxt" ></span>
+	<br>
 	<div id="main1" class="container">
 		<div class="row">
 			<div id="mainCric" class="span5"></div>

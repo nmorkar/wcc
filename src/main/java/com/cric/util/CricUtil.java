@@ -21,6 +21,15 @@ public final class CricUtil {
 			return null;
 		}
 	}
+	
+	public static String toJson(CricModel model){
+		try {
+			return mapper.writeValueAsString(model);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}	
+	}
 
 	public static CricModel getModel() {
 		CricModel model = new CricModel();

@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
 	}
 	@Override
 	public void sendEmail(){
-		email.sendEmail("nmorkar@gmail.com", "nmorkar@gmail.com", "test email");
+		email.sendEmail("nmorkar@gmail.com", "nmorkar@yahoo.com", "test email");
 	}
 	
 	@Override

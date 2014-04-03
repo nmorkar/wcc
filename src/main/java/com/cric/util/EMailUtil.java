@@ -54,12 +54,14 @@ public class EMailUtil implements MailSender {
                 Map model = new HashMap();
 
                 String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "mlist_email_template.vm", model);
+                System.out.println(text);
                 message.setText(text, true);
             }
         };
         try {
             this.javaMailSender.send(preparator);
         } catch (MailSendException mse) {
+        	System.out.println(mse.getMessage());
             mse.printStackTrace();
             throw mse;
         }

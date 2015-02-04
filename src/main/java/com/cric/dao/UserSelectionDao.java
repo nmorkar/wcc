@@ -22,7 +22,7 @@ public class UserSelectionDao extends HibernateDaoSupport {
 	
 	
 	public void saveUpdate(List<UserSelection> c){
-		getHibernateTemplate().saveOrUpdateAll(c);
+		//getHibernateTemplate().saveOrUpdateAll(c);
 		//getHibernateTemplate().flush();
 	}
 	
@@ -50,7 +50,7 @@ public class UserSelectionDao extends HibernateDaoSupport {
 		for (UserSelection userSelection : u) {
 			userSelection.setStatus(0l);
 		}
-		getHibernateTemplate().saveOrUpdateAll(u);
+		//getHibernateTemplate().saveOrUpdateAll(u);
 	}
 	
 	public void archive(UserSelection user){
@@ -68,22 +68,22 @@ public class UserSelectionDao extends HibernateDaoSupport {
 
 	@SuppressWarnings("unchecked")
 	public List<UserSelection> findAll(){
-		return  getHibernateTemplate().find(" from UserSelection u where  status = 1");
+		return  (List<UserSelection>) getHibernateTemplate().find(" from UserSelection u where  status = 1");
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<UserSelection> find(Long userId){
-		return  getHibernateTemplate().find(" from UserSelection u where u.userId = ?  and status = 1 ", new Object[]{userId});
+		return  (List<UserSelection>) getHibernateTemplate().find(" from UserSelection u where u.userId = ?  and status = 1 ", new Object[]{userId});
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<UserSelection> find(Long userId, String matchname){
-		return  getHibernateTemplate().find(" from UserSelection u where u.userId = ? and u.matchName = ?  and status = 1 ", new Object[]{userId,matchname});
+		return  (List<UserSelection>) getHibernateTemplate().find(" from UserSelection u where u.userId = ? and u.matchName = ?  and status = 1 ", new Object[]{userId,matchname});
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<UserSelection> find(String matchname){
-		return  getHibernateTemplate().find(" from UserSelection u where u.matchName = ? and status = 1", new Object[]{matchname});
+		return  (List<UserSelection>) getHibernateTemplate().find(" from UserSelection u where u.matchName = ? and status = 1", new Object[]{matchname});
 	}
 	
 	

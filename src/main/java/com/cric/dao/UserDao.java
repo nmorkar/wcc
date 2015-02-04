@@ -37,7 +37,7 @@ public class UserDao extends HibernateDaoSupport {
 	
 	public User find(String username){
 		@SuppressWarnings("unchecked")
-		List<User> l = getHibernateTemplate().find(" from User u where upper(u.userName) = ? ", new String[]{username.toUpperCase()});
+		List<User> l = (List<User>) getHibernateTemplate().find(" from User u where upper(u.userName) = ? ", new String[]{username.toUpperCase()});
 		if(l != null && !l.isEmpty()){
 			return l.get(0);
 		}

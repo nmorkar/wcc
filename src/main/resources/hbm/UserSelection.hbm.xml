@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.cric.domain.UserSelection" table="user_selection"	>
+	<class name="com.cric.domain.UserSelection" table="user_selection" schema="wccdb"	>
 		<id name="selectionId" type="java.lang.Long">
 			<column name="selectionid" />
 			<generator class="increment" />

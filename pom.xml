@@ -10,6 +10,8 @@
 	<name>wildfly8</name>
 
 	<properties>
+	 	<springframework.version>4.0.6.RELEASE</springframework.version>
+        <hibernate.version>4.3.6.Final</hibernate.version>
 		<spring.version>4.0.1.RELEASE</spring.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
@@ -36,8 +38,50 @@
 			<version>3.1</version>
 		</dependency>
 		<!-- Spring framework -->
+		
+		<!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+ <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>${springframework.version}</version>
+</dependency>
+
+<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		
+        <!-- Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        
+		
 		<!-- Spring dependencies -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
@@ -59,7 +103,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 			<version>${spring.version}</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- JSTL -->
 		<dependency>
@@ -101,8 +145,16 @@
 		<artifactId>mysql-connector-java</artifactId>
 		<version>5.1.29</version>
 	</dependency>
-	<!-- Hibernate framework -->
+	
 	<dependency>
+	<groupId>org.hsqldb</groupId>
+	<artifactId>hsqldb</artifactId>
+	<version>2.2.9</version>
+</dependency>
+	
+	
+	<!-- Hibernate framework -->
+	<!-- <dependency>
 		<groupId>org.hibernate</groupId>
 		<artifactId>hibernate-core</artifactId>
 		<version>4.3.4.Final</version>
@@ -111,19 +163,19 @@
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-hibernate3</artifactId>
 		<version>2.0.8</version>
-	</dependency>
+	</dependency> -->
 	<!-- Hibernate library dependecy start -->
-	<dependency>
+	<!-- <dependency>
 		<groupId>dom4j</groupId>
 		<artifactId>dom4j</artifactId>
 		<version>1.6.1</version>
-	</dependency>
+	</dependency> -->
 	<!-- <dependency>
 		<groupId>org.jboss.logging</groupId>
 		<artifactId>jboss-logging</artifactId>
 		<version>3.1.4</version>
 	</dependency> -->
-	<dependency>
+	<!-- <dependency>
 		<groupId>javax.transaction</groupId>
 		<artifactId>jta</artifactId>
 		<version>1.1</version>
@@ -132,7 +184,7 @@
 		<groupId>com.fasterxml</groupId>
 		<artifactId>classmate</artifactId>
 		<version>1.0.0</version>
-	</dependency>
+	</dependency> -->
 
 
 <dependency>

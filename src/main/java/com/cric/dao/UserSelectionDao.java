@@ -2,32 +2,43 @@ package com.cric.dao;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Component;
 
 import com.cric.domain.UserSelection;
 
+//@Transactional(readOnly = false)
 @Component
 public class UserSelectionDao extends HibernateDaoSupport {
 
 	/*@Autowired
 	SessionFactory sessionFactory;*/
 	
+	/*@Autowired
+	private HibernateTemplate  hibernateTemplate;*/
+	
 	@Autowired
-	public void init(SessionFactory factory) {
-	    setSessionFactory(factory);
+	public void init(HibernateTemplate hibernateTemplate) {
+	    //setSessionFactory(factory);
+		//this.hibernateTemplate = hibernateTemplate;
+		setHibernateTemplate(hibernateTemplate);
 	}
 	
 	
 	public void saveUpdate(List<UserSelection> c){
-		//getHibernateTemplate().saveOrUpdateAll(c);
-		//getHibernateTemplate().flush();
+		//getHibernateTemplate().getSessionFactory().getCurrentSession().setFlushMode(FlushMode.AUTO);
+		
+		for (UserSelection userSelection : c) {
+			save(userSelection);
+		}
+		
 	}
 	
 	public void save(UserSelection user){
 		getHibernateTemplate().save(user);
+		getHibernateTemplate().flush();
 	}
  
 	public void update(UserSelection user){

@@ -25,7 +25,7 @@ public class AppController {
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(value = "/login.htm")
+	@RequestMapping("/login.htm")
 	public String login() {
 		return "login";
 	}

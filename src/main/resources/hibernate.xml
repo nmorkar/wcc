@@ -1,11 +1,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	 xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 
 <!-- Hibernate session factory -->
@@ -20,7 +23,8 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
        <props>
          <prop key="hibernate.dialect">${hibernate.dialect}</prop>
          <prop key="hibernate.show_sql">true</prop>
-         <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+         <!-- <prop key="hibernate.hbm2ddl.auto">create-drop</prop> -->
+         <prop key="hibernate.hbm2ddl.auto">update</prop>
        </props>
      </property>
  
@@ -32,4 +36,13 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
       </property>	
  
     </bean>
+    <tx:annotation-driven/>
+ <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+</bean>
+
+<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate" autowire-candidate="true" > 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+</bean>
+
 </beans>

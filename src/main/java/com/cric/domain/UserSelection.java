@@ -6,6 +6,7 @@ public class UserSelection {
 
 	private Long selectionId;
 	private User user;
+	private String userName;
 	private String matchName;
 	private String selection;
 	private Date selectionDate;
@@ -43,7 +44,12 @@ public class UserSelection {
 		this.selectionDate = selectionDate;
 	}
 	
-	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public Long getStatus() {
 		return status;
 	}

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cric.dao.UserDao;
 import com.cric.dao.UserSelectionDao;
@@ -19,17 +20,18 @@ import com.cric.model.PlayerSelection;
 import com.cric.util.CricUtil;
 import com.cric.util.EMailUtil;
 
+@Transactional(readOnly = false)
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	UserDao userDao;
+	private UserDao userDao;
 	
 	@Autowired
-	UserSelectionDao userSelectionDao;
+	private UserSelectionDao userSelectionDao;
 	
 	@Autowired
-	EMailUtil email;
+	private EMailUtil email;
 	
 	@Override
 	public User getUser(String username) {
@@ -48,7 +50,8 @@ public class UserServiceImpl implements UserService {
 			//Add
 			lus = new ArrayList<>();
 			for (Player p : model.getPlayers()) {
-				UserSelection us = new UserSelection();		
+				UserSelection us = new UserSelection();	
+				us.setUserName(p.getName());
 				us.setMatchName(model.getMatch());
 				us.setSelection(p.getSelectedPlayers().toString());
 				us.setSelectionDate(new Date());
@@ -109,9 +112,11 @@ public class UserServiceImpl implements UserService {
 
 	private PlayerSelection buildPlayerSelection(UserSelection userSelection){
 		PlayerSelection p = new PlayerSelection();
-		 p.setName(userSelection.getUser().getUserName());
+		p.setName(userSelection.getUserName());
+		 //p.setName(userSelection.getUser().getUserName());
 		 p.setSelectedPlayers(userSelection.getSelection());
-		 p.setIntial(com.cric.model.User.valueOf(userSelection.getUser().getUserName().toUpperCase()).getInitial());
+		 //p.setIntial(com.cric.model.User.valueOf(userSelection.getUser().getUserName().toUpperCase()).getInitial());
+		 p.setIntial(com.cric.model.User.valueOf(userSelection.getUserName().toUpperCase()).getInitial());
 		return p;
 	}
 }

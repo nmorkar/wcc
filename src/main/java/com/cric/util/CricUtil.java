@@ -55,9 +55,51 @@ public final class CricUtil {
 		
 		model.setNextUser(CricMatchCache.nextSelectionOrder(u)); //set next user to select
 		
+		CricMatchCache.setNextUser(model.getNextUser());
+		
+		model.setSelectionOrder(CricMatchCache.getSelectionOrder());
+		
 		return model;
 	}
 
+	public static CricModel getCricModel(){
+		CricModel m = new CricModel();
+		m.setRefresh(false);
+		m.setSelectionOrder(CricMatchCache.getSelectionOrder());
+		m.setNextUser(CricMatchCache.getNextUser());
+		return m;
+	} 
+	
+	public static CricModel addLoggedInUser(String username){
+		User u = User.valueOf(username.toUpperCase());
+		CricMatchCache.addSelectionOrder(u);
+		
+		return getCricModel();
+	}
+	public static CricModel removeLoggedInUser(String username){
+		User u = User.valueOf(username.toUpperCase());
+		CricMatchCache.removeSelectionOrder(u);
+		
+		return getCricModel();
+	}
+
+	public static CricModel addSelectionOrder(String names){
+		if(names != null && !names.isEmpty()){
+			String[] nameArr = names.split(",");
+			if(nameArr != null && nameArr.length > 0){
+				CricMatchCache.clearSelectionOrder();
+				for (String name : nameArr) {
+					User u = User.valueOf(name.toUpperCase());
+					CricMatchCache.addSelectionOrder(u);	
+				}
+			}
+		}else{
+			CricMatchCache.clearSelectionOrder();
+		}
+		
+		return getCricModel();
+	}
+	
 	public static String nextUser(String username){
 		User u = User.valueOf(username.toUpperCase());
 		return CricMatchCache.nextSelectionOrder(u);
@@ -68,6 +110,7 @@ public final class CricUtil {
 		CricMatchCache.reset();
 		CricModel model = new CricModel();
 		model.setPlayers(CricMatchCache.getPlayers());
+	
 		return new CricModel();
 	}
 
@@ -77,6 +120,8 @@ public final class CricUtil {
 		model.setMatch(matchId);
 		model.setPlayers(CricMatchCache.getPlayers());
 		model.setPlayerCount(CricMatchCache.getPlayerCount());
+		model.setSelectionOrder(CricMatchCache.getSelectionOrder());
+		model.setNextUser(CricMatchCache.getNextUser());
 		return model;
 
 	}

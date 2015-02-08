@@ -1,6 +1,8 @@
 package com.cric.model;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 public class CricModel {
 
@@ -9,7 +11,9 @@ public class CricModel {
 	private Collection<Player> players;
 	private String message;
 	private String nextUser;
-	
+	private List<User> selectionOrder;
+	private boolean refresh=true;
+ 	
 	public String getMatch() {
 		return match;
 	}
@@ -39,6 +43,19 @@ public class CricModel {
 	}
 	public void setNextUser(String next) {
 		this.nextUser = next;
+	}
+	
+	public List<User> getSelectionOrder() {
+		return selectionOrder;
+	}
+	public void setSelectionOrder(List<User> selectionOrder) {
+		this.selectionOrder = selectionOrder;
+	}
+	public boolean isRefresh() {
+		return refresh;
+	}
+	public void setRefresh(boolean refresh) {
+		this.refresh = refresh;
 	}
 	
 	

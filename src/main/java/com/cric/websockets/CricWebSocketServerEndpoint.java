@@ -48,6 +48,15 @@ public class CricWebSocketServerEndpoint {
 			m = CricUtil.rest();
 		}else if("new".equals(ms[0])){
 			m = CricUtil.startNew(ms[1]);
+		}else if("login".equals(ms[0])){
+			m = CricUtil.addLoggedInUser(ms[1]);
+			m.setMessage(ms[1] + " has logged In.");	
+		}else if("logout".equals(ms[0])){
+			m = CricUtil.removeLoggedInUser(ms[1]);
+			m.setMessage(ms[1] + " has logged Out.");	
+		}else if("order".equals(ms[0])){
+			m = CricUtil.addSelectionOrder(ms.length > 1 ?ms[1]:null);
+			m.setMessage(ms[1] + "Selection order has been changed.");
 		}
 		
 		

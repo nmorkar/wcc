@@ -9,9 +9,12 @@
 			<generator class="increment" />
 		</id>
 
-		<many-to-one name="user" column="userid" class="com.cric.domain.User"
-			not-null="true" fetch="join" lazy="false" />
-
+		<!-- <many-to-one name="user" column="userid" class="com.cric.domain.User"
+			not-null="true" fetch="join" lazy="false" /> -->
+			
+		<property name="userName" type="string">
+			<column name="userName" length="250" not-null="true" />
+		</property>
 		<property name="matchName" type="string">
 			<column name="matchname" length="250" not-null="true" />
 		</property>

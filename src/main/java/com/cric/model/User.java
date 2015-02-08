@@ -2,7 +2,7 @@ package com.cric.model;
 
 public enum User {
 
-	NIMESH(1l,"nimesh","nimesh123","NM",true),
+	NIMESH(1l,"nimesh","nimesh7890","NM",true),
 	ANIL(2l,"anil","anil123","AM",false),
 	NARU(3l,"naru","naru123","NP",false),
 	KUMAR(4l,"kumar","kumar123","KM",false),

@@ -20,6 +20,8 @@ public class CricMatchCache {
 	private static Map<User, Player> userPls = new HashMap<>();
 	private static int playerCount;
 	private static List<User> selectionOrder = new ArrayList<>();
+	private static String nextUser;
+	
 	
 	public static Collection<Player> selectRandom(User u){
 		Player p = userPls.get(u);
@@ -69,7 +71,8 @@ public class CricMatchCache {
 		availableList = new ArrayList<>(getList());
 		//userPls = new HashMap<>();
 		userPls.values().clear();
-		selectionOrder.clear();
+		//selectionOrder.clear();
+		nextUser="";
 	}
 	
 	public static void startNew(String mId){
@@ -93,7 +96,36 @@ public class CricMatchCache {
 			selectionOrder.add(u);
 		}
 	}
+	public static void removeSelectionOrder(User u){
+		if(!selectionOrder.contains(u)){
+			selectionOrder.remove(u);
+		}
+	}
+	public static void clearSelectionOrder(){
+		if(selectionOrder != null){
+			selectionOrder.clear();
+		}
+	}
+	public static List<User> getSelectionOrder(){
+		return selectionOrder;
+		
+	}
 	
+	
+	
+	public static String getNextUser() {
+		if(nextUser == null || nextUser.isEmpty()){
+			if( selectionOrder != null && !selectionOrder.isEmpty() ){
+				return selectionOrder.get(0).getName();
+			}
+		}
+		return nextUser;
+	}
+
+	public static void setNextUser(String nextUser) {
+		CricMatchCache.nextUser = nextUser;
+	}
+
 	public static String nextSelectionOrder(User u){
 		Iterator<User> ite = selectionOrder.iterator();
 		while (ite.hasNext()) {

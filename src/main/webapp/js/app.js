@@ -63,9 +63,6 @@ function buildUI(jdata){
 	var uname = $('#uname').text();
 	
 	if(jdata.refresh){
-		
-		
-		
 		console.log(uname);
 		console.log(jdata.playerCount);
 		console.log(jdata.match);
@@ -83,7 +80,7 @@ function buildUI(jdata){
 		}
 		
 		var disableButton="";
-		if(jdata != null && jdata.nextUser != null && jdata.nextUser != uname){
+		if(jdata != null && jdata.nextUser != null && jdata.nextUser.toLowerCase() != uname.toLowerCase()){
 			//$("button[psClass='']").removeAttr("disabled");
 			disableButton="disabled";
 		}
@@ -114,10 +111,10 @@ function buildUI(jdata){
 		}
 		
 	}else{
-		if(jdata != null && jdata.nextUser != null && jdata.nextUser != uname){
+		if(jdata != null && jdata.nextUser != null && jdata.nextUser.toLowerCase() != uname.toLowerCase()){
 			$(function(){
 				$("button.pickClass").attr("disabled", true);
-				});
+			});
 		}else{
 			$(function(){
 				$("button.pickClass").removeAttr("disabled");

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cric.model.Performance;
 import com.cric.model.PlayerSelection;
 import com.cric.model.User;
 import com.cric.service.UserService;
@@ -122,6 +123,33 @@ public class AppController {
 			e.printStackTrace();
 		}
 		return "mlist";
+	}
+	
+	@RequestMapping(value = "/performance.htm", method = RequestMethod.GET)
+	public String performance(Model model){
+		try{
+		List<Performance> m = userService.getPerformance();
+		
+		model.addAttribute("mlist", m);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "performance";
+	}
+	
+	@RequestMapping(value = "/savePerformance.htm", method = RequestMethod.POST)
+	public @ResponseBody String savePerformance(@RequestParam(value = "matchName", required = false) String matchName,
+			@RequestParam(value = "performance", required = false) String performance){
+		try{
+			
+			userService.savePerformance(matchName, performance);
+		
+		}catch(Exception e){
+			e.printStackTrace();
+			return "failed";
+		}
+		return "success";
+		//return "redirect:home.htm";
 	}
 
 	@RequestMapping(value = "/checkMatch.htm")

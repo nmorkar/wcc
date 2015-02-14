@@ -17,7 +17,8 @@ body {
 }
 </style>
 <link href="css/bootstrap-responsive.css" rel="stylesheet">
-
+<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
 </head>
 
 <body>

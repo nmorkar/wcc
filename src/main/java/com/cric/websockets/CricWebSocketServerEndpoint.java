@@ -26,63 +26,57 @@ public class CricWebSocketServerEndpoint {
 
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
-		try{
-			
-		
-		if (StringUtils.isBlank(message)) {
-			 return ;
-		}
-		
-		String[] ms = message.split(":"); //0-action:1-uname
-		
-		CricModel m = null;
-		if("pick".equals(ms[0])){
-			m = CricUtil.selectPlayer(ms[1]);
-			String nextUser = CricUtil.nextUser(ms[1]);
-			if(nextUser != null){
-				m.setMessage(ms[1] + " has selected the choice. "+ nextUser + " please select your choice." );
-			}else{
-				m.setMessage(ms[1] + " has selected the choice.");	
+		try {
+
+			if (StringUtils.isBlank(message)) {
+				return;
 			}
-		}else if("reset".equals(message)){
-			m = CricUtil.rest();
-		}else if("new".equals(ms[0])){
-			m = CricUtil.startNew(ms[1]);
-		}else if("login".equals(ms[0])){
-			m = CricUtil.addLoggedInUser(ms[1]);
-			m.setMessage(ms[1] + " has logged In.");	
-		}else if("logout".equals(ms[0])){
-			m = CricUtil.removeLoggedInUser(ms[1]);
-			m.setMessage(ms[1] + " has logged Out.");	
-		}else if("order".equals(ms[0])){
-			m = CricUtil.addSelectionOrder(ms.length > 1 ?ms[1]:null);
-			m.setMessage(ms[1] + "Selection order has been changed.");
-		}
-		
-		
-		for (Session s : session.getOpenSessions()) {
-			System.out.println(s.getId());
-			if (s.isOpen()) {
-				try {
-					s.getAsyncRemote().sendText(CricUtil.convertToJSON(m));
-					System.out.println("Message Sent " + message);
-				} catch (Exception ex) {
-					ex.printStackTrace();
-					System.err.println("Error in sending message to " + session
-							+ ": " + ex);
+
+			String[] ms = message.split(":"); // 0-action:1-uname
+			if (ms != null && ms.length > 1) {
+				CricModel m = null;
+				if ("pick".equals(ms[0])) {
+					m = CricUtil.selectPlayer(ms[1]);
+					String nextUser = CricUtil.nextUser(ms[1]);
+					if (nextUser != null) {
+						m.setMessage(ms[1] + " has selected the choice. "
+								+ nextUser + " please select your choice.");
+					} else {
+						m.setMessage(ms[1] + " has selected the choice.");
+					}
+				} else if ("reset".equals(message)) {
+					m = CricUtil.rest();
+				} else if ("new".equals(ms[0])) {
+					m = CricUtil.startNew(ms[1]);
+				} else if ("login".equals(ms[0])) {
+					m = CricUtil.addLoggedInUser(ms[1]);
+					m.setMessage(ms[1] + " has logged In.");
+				} else if ("logout".equals(ms[0])) {
+					m = CricUtil.removeLoggedInUser(ms[1]);
+					m.setMessage(ms[1] + " has logged Out.");
+				} else if ("order".equals(ms[0])) {
+					m = CricUtil
+							.addSelectionOrder(ms.length > 1 ? ms[1] : null);
+					m.setMessage(ms[1] + "Selection order has been changed.");
+				}
+
+				for (Session s : session.getOpenSessions()) {
+					System.out.println(s.getId());
+					if (s.isOpen()) {
+						try {
+							s.getAsyncRemote().sendText(
+									CricUtil.convertToJSON(m));
+							System.out.println("Message Sent " + message);
+						} catch (Exception ex) {
+							ex.printStackTrace();
+							System.err.println("Error in sending message to "
+									+ session + ": " + ex);
+						}
+					}
 				}
 			}
-		}
-		
-		/*if (isLogout) {
-            session.close(new CloseReason(
-                    CloseReason.CloseCodes.NORMAL_CLOSURE,
-                    user + " leaves"));
-        }*/
-		
-		// session.
-		// return StringUtils.reverse(message);
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

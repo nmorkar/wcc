@@ -25,7 +25,7 @@
 			<column name="selectiondate" length="100" />
 		</property>
 		<property name="jsonData" type="string">
-			<column name="jsondata" />
+			<column name="jsondata" length="4000" />
 		</property>
 		<property name="status" type="long">
 			<column name="status" length="1" not-null="true" />

@@ -5,7 +5,7 @@ if (window.location.protocol == 'http:') {
 	// ':8000/websocket-reverse-echo-example/echo';
 	 wsUrl = 'ws://' + window.location.host + ':8000/cric';
 	//wsUrl = 'ws://localhost:8080/wildfly8/cric';
-	//wsUrl = 'ws://192.168.1.5:8080/cric/cric';	
+	//wsUrl = 'ws://192.168.1.4:8080/cric/cric';	
 } else {
   	// wsUrl = 'wss://' + window.location.host +
 	// ':8443/websocket-reverse-echo-example/echo';
@@ -202,9 +202,11 @@ $("button#saveSubmit").on('click',function(){
     var jqxhr = $.ajax( {type: "POST",url : "save.htm"} )
 	.done(function(data) {
 		console.log( "done" );
+		$("#midValMessage").text("Added succuess fully.");
 	})
 	.fail(function() {
 		console.log( "error" );
+		$("#midValMessage").text("Problem while saving.");
 	})
 	.always(function() {
 		//console.log( "complete" );

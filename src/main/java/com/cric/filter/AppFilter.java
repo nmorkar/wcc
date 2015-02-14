@@ -44,6 +44,7 @@ public class AppFilter implements Filter {
 		
 		if( s.getAttribute("uname") == null ){
 			((HttpServletResponse)response).sendRedirect("login.htm");
+			return;
 		}
 		chain.doFilter(request, response);
 	}

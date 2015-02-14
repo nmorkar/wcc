@@ -45,7 +45,7 @@ body {
 	<span id="midValMessage" style="color:red" ></span><br>
 	<input type="text" id="mid"> &nbsp; 
 	<button type="submit" class="btn btn-success" id="midSubmit"> Add New </button>
-	<button type="submit" class="btn btn-success" id="orderSubmit"> Set Selection Order</button> 
+	<button type="submit" class="btn btn-success" id="orderSubmit"> Set Selection Order</button> <br>
 	<button type="submit" class="btn btn-success" id="restSubmit">Rest</button>
 	<button type="submit" class="btn btn-success" id="saveSubmit">Save Selection</button>
 	<button type="submit" class="btn btn-success" id="emailSubmit">Email</button>
@@ -54,7 +54,9 @@ body {
 
 <form action="mlist.htm" method="get">
 	<button type="submit" class="btn btn-success" id="viewSubmit">View Selection</button>
-	
+</form>
+<form action="performance.htm" method="get">
+	<button type="submit" class="btn btn-success" id="viewSubmit">View Performance</button>
 </form>
 	<div>
 		<span>Selection Order:</span><span id="selectionOrderTxt"></span>

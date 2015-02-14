@@ -37,8 +37,9 @@ public class UserSelectionDao extends HibernateDaoSupport {
 	}
 	
 	public void save(UserSelection user){
+		user.setJsonData(null);
 		getHibernateTemplate().save(user);
-		getHibernateTemplate().flush();
+		//getHibernateTemplate().flush();
 	}
  
 	public void update(UserSelection user){
@@ -79,7 +80,7 @@ public class UserSelectionDao extends HibernateDaoSupport {
 
 	@SuppressWarnings("unchecked")
 	public List<UserSelection> findAll(){
-		return  (List<UserSelection>) getHibernateTemplate().find(" from UserSelection u where  status = 1");
+		return  (List<UserSelection>) getHibernateTemplate().find(" from UserSelection u where  status = 1 order by u.selectionId asc");
 	}
 	
 	@SuppressWarnings("unchecked")

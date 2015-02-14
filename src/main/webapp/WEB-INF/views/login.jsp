@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
 	<title>Cric Login</title>
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+	
 </head>
 <body>
 	<section class="loginform cf">

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.cric.domain.User;
 import com.cric.model.CricModel;
+import com.cric.model.Performance;
 import com.cric.model.PlayerSelection;
 
 public interface UserService {
@@ -16,4 +17,6 @@ public interface UserService {
 	void archiveMatchSelection(String matchname);
 	boolean matchNameExists(String matchname);
 	void sendEmail();
+	public List<Performance> getPerformance();
+	public void savePerformance(String matchName,String performance);
 }
